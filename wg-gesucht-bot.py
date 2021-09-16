@@ -61,6 +61,10 @@ if check_exists_by_class("logout_button"):
 while True:
     # iterate through listings
     for key, url in config.items('listings'):
+
+        if check_exists_by_id("cmpbntyestxt"):
+            btn = driver.find_element_by_id("cmpbntyestxt").click()
+
         print("Currently updating: {}".format(url))
         # open listing
         driver.get(url)
