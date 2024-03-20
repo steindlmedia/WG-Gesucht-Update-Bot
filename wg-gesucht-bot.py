@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from configparser import ConfigParser
 from selenium.webdriver.common.by import By
+import random
 
 # helper functions to check if an element exists
 def check_exists_by_id(element_id):
@@ -68,7 +69,6 @@ while True:
         time.sleep(5)
 
         # hide modal if it shows up
-        # $('#hard_ad_limit_modal').modal('show') is invoked by the website to show a modal
         if check_exists_by_id("hard_ad_limit_modal"):
             driver.execute_script("$('#hard_ad_limit_modal').modal('hide');")
         
@@ -79,4 +79,7 @@ while True:
         time.sleep(5)
 
     print("Updated at {}".format(datetime.now().strftime("%Y-%m-%d %H:%M")))
-    time.sleep(float(config['setup']['interval']))
+
+    sleep_duration = random.randint(60, int(config['setup']['interval']))
+    print("Sleeping for {} seconds.".format(sleep_duration))
+    time.sleep(sleep_duration)
